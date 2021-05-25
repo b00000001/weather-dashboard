@@ -47,7 +47,10 @@ function displayForecast(value) {
 function fiveDay(value) {
 	console.log("Five Day Forecast for: ", value);
 	for (var i = 0; i < forecastCards.children.length; i++) {
-		var cardChildren = forecastCards.children[i];
+		var cardChildren = forecastCards.children[i].children[0].children[0];
+		cardChildren.innerText = `${now._d.getMonth() + 1}/${
+			now._d.getDate() + i
+		}/${now._d.getFullYear()}`;
 	}
 }
 init();
