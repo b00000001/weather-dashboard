@@ -35,22 +35,39 @@ function callApi(value) {
 		.then(function (cityForecast) {
 			displayForecast(cityForecast);
 		});
+
+	fetch(
+		"http://api.openweathermap.org/data/2.5/forecast?q=" +
+			value +
+			"&units=imperial&appid=" +
+			apiKey
+	)
+		.then(function (res) {
+			return res.json();
+		})
+		.then(function (fdforecast) {
+			console.log(fdforecast);
+			fiveDay(fdforecast);
+		});
 }
 function displayForecast(value) {
-	console.log("Call API for: ", value);
+	console.log("Call API for: ", value.name);
 	weatherDisplay.children[0].innerText = value.name;
 	weatherDisplay.children[1].innerText = "Temp: " + value.main.temp + " F";
 	weatherDisplay.children[2].innerText = "Wind: " + value.wind.speed;
 	weatherDisplay.children[3].innerText = "Humidity: " + value.main.humidity;
-	fiveDay(value);
+	weatherDisplay.children[4].innerText = "UV Index: " + value.main.humidity;
 }
-function fiveDay(value) {
-	console.log("Five Day Forecast for: ", value);
+function fiveDay(fivedaylist) {
+	// console.log("Five Day Forecast", fiveday);
 	for (var i = 0; i < forecastCards.children.length; i++) {
-		var cardChildren = forecastCards.children[i].children[0].children[0];
-		cardChildren.innerText = `${now._d.getMonth() + 1}/${
-			now._d.getDate() + i
-		}/${now._d.getFullYear()}`;
+		forecastCards.children[i].children[0].children[0].innerText = `${
+			now._d.getMonth() + 1
+		}/${now._d.getDate() + i}/${now._d.getFullYear()}`;
+		forecastCards.children[i].children[0].children[2].innerText =
+			"Temp: " + fivedaylist.list[i].main.temp + " F";
+		forecastCards.children[i].children[0].children[3].innerText =
+			"Wind: " + fivedaylist.list[i].wind.speed;
 	}
 }
 init();
