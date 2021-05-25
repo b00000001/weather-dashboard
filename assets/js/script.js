@@ -2,15 +2,16 @@ var citiesCol = document.getElementById("city__col");
 const apiKey = "8e615c825fd43e5fdbc1ce461e5a0a9d";
 var forecast;
 var weatherDisplay = document.getElementById("weather__display");
-var buttonStore = {
-	searchButton: document.getElementById("search__btn"),
-};
-buttonStore.searchButton.addEventListener("click", function (e) {
+searchButton = document.getElementById("search__btn");
+searchField = document.getElementById("search__field");
+searchButton.addEventListener("click", function (e) {
 	/*
 	Button tags use submit behavior by default. Prevent default needed to keep button from reloading by default 
 	*/
 	e.preventDefault();
-	console.log("Search button connected");
+	var searchTerm = searchField.value;
+	console.log("Search button connected term:", searchTerm);
+	callApi(searchTerm);
 });
 function init() {
 	for (var i = 0; i < citiesCol.children.length; i++) {
@@ -19,9 +20,12 @@ function init() {
 		});
 	}
 }
+function apiSearch() {
+	console.log("Api Search");
+}
 function callApi(value) {
 	fetch(
-		"http://api.openweathermap.org/data/2.5/onecall?q=" +
+		"http://api.openweathermap.org/data/2.5/weather?q=" +
 			value +
 			"&units=imperial&appid=" +
 			apiKey
