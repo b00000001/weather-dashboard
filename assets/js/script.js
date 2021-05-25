@@ -1,7 +1,9 @@
 var citiesCol = document.getElementById("city__col");
 const apiKey = "8e615c825fd43e5fdbc1ce461e5a0a9d";
 var forecast;
+var now = moment();
 var weatherDisplay = document.getElementById("weather__display");
+var forecastCards = document.getElementById("forecast__cards");
 searchButton = document.getElementById("search__btn");
 searchField = document.getElementById("search__field");
 searchButton.addEventListener("click", function (e) {
@@ -20,9 +22,6 @@ function init() {
 		});
 	}
 }
-function apiSearch() {
-	console.log("Api Search");
-}
 function callApi(value) {
 	fetch(
 		"http://api.openweathermap.org/data/2.5/weather?q=" +
@@ -34,15 +33,22 @@ function callApi(value) {
 			return res.json();
 		})
 		.then(function (cityForecast) {
-			console.log(cityForecast);
-			weatherDisplay.children[0].innerText = cityForecast.name;
-			weatherDisplay.children[1].innerText =
-				"Temp: " + cityForecast.main.temp + " F";
-			weatherDisplay.children[2].innerText = "Wind: " + cityForecast.wind.speed;
-			weatherDisplay.children[3].innerText =
-				"Humidity: " + cityForecast.main.humidity;
+			displayForecast(cityForecast);
 		});
+}
+function displayForecast(value) {
 	console.log("Call API for: ", value);
+	weatherDisplay.children[0].innerText = value.name;
+	weatherDisplay.children[1].innerText = "Temp: " + value.main.temp + " F";
+	weatherDisplay.children[2].innerText = "Wind: " + value.wind.speed;
+	weatherDisplay.children[3].innerText = "Humidity: " + value.main.humidity;
+	fiveDay(value);
+}
+function fiveDay(value) {
+	console.log("Five Day Forecast for: ", value);
+	for (var i = 0; i < forecastCards.children.length; i++) {
+		var cardChildren = forecastCards.children[i];
+	}
 }
 init();
 

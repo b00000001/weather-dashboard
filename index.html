@@ -49,12 +49,21 @@
                         <h5></h5>
                     </div>
                 </div>
-                <div class="fdforecast d-flex flex-column mt-3 h-100">
+                <div class="d-flex flex-column mt-3 h-100">
                     <div class="forecast__title">
                         <h3>5-Day Forecast:</h3>
                     </div>
-                    <div class="forecast__icons d-flex justify-content-between">
-                        <div class="card">
+                    <div id='forecast__cards' class="d-flex justify-content-between">
+                        <div class="card" data-index='0'>
+                            <div class="card-body">
+                                <h5>3/31/2022</h5>
+                                <p>icon</p>
+                                <h6>Temp</h6>
+                                <h6>Wind</h6>
+                                <h6>Humidity</h6>
+                            </div>
+                        </div>
+                        <div class="card" data-index='1'>
                             <div class="card-body">
                                 <h5>3/31/2021</h5>
                                 <p>icon</p>
@@ -63,7 +72,7 @@
                                 <h6>Humidity</h6>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" data-index='2'>
                             <div class="card-body">
                                 <h5>3/31/2021</h5>
                                 <p>icon</p>
@@ -72,7 +81,8 @@
                                 <h6>Humidity</h6>
                             </div>
                         </div>
-                        <div class="card">
+
+                        <div class="card" data-index=' 3'>
                             <div class="card-body">
                                 <h5>3/31/2021</h5>
                                 <p>icon</p>
@@ -81,22 +91,14 @@
                                 <h6>Humidity</h6>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" data-index='4'>
                             <div class="card-body">
                                 <h5>3/31/2021</h5>
                                 <p>icon</p>
                                 <h6>Temp</h6>
                                 <h6>Wind</h6>
                                 <h6>Humidity</h6>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5>3/31/2021</h5>
-                                <p>icon</p>
-                                <h6>Temp</h6>
-                                <h6>Wind</h6>
-                                <h6>Humidity</h6>
+
                             </div>
                         </div>
                     </div>
@@ -105,6 +107,9 @@
 
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="./assets/js/script.js"></script>
 
 </html>
