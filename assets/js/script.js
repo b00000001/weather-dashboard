@@ -21,7 +21,7 @@ searchButton.addEventListener("click", function (e) {
 	e.preventDefault();
 	indexArray = [];
 	var searchTerm = searchField.value;
-	console.log("Search button connected term:", searchTerm);
+	// console.log("Search button connected term:", searchTerm); // Will spit out what term was put into search for debugging.
 	for (var i = 0; i < forecastCards.children.length; i++) {
 		forecastCards.children[i].children[0].children[1].innerHTML = "";
 	}
@@ -75,7 +75,7 @@ function callApi(value) {
 		});
 }
 function displayForecast(value) {
-	console.log("Call API for: ", value.name);
+	// console.log("Call API for: ", value.name); // Will say what API search term is being sent
 	weatherDisplay.children[0].innerText = value.name;
 	weatherDisplay.children[1].innerText = "Temp: " + value.main.temp + " F";
 	weatherDisplay.children[2].innerText = "Wind: " + value.wind.speed;
@@ -90,11 +90,11 @@ function fiveDay(fivedaylist) {
 		// indexArray = indexArray[i];
 		// console.log(indexArray);
 		var iconCode = fivedaylist.list[indexArray[i]].weather[0].icon;
-		console.log(fivedaylist.list[indexArray[i]].dt_txt);
+		// console.log(fivedaylist.list[indexArray[i]].dt_txt); // Shows indexes of arrays that apply to 12Noon.
 		var icon = document.createElement("img");
 		icon.setAttribute(
 			"src",
-			"http://openweathermap.org/img/wn/" + iconCode + "@2x.png"
+			"http://openweathermap.org/img/w/" + iconCode + ".png"
 		);
 		var formattedDate = fivedaylist.list[indexArray[i]].dt_txt;
 		formattedDate = formattedDate.split(" ");
