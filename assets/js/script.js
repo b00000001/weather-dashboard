@@ -110,7 +110,8 @@ function callApi(value) {
 				var listDates = fdforecast.list[i].dt_txt;
 				listDates = listDates.split(" ");
 				// console.log(listDates);
-				if (listDates[1] === "12:00:00") {
+				if (listDates[1] === "00:00:00") {
+					// Openweather map API has midnight and 12noon confused.
 					indexArray.push(i);
 				}
 			}
@@ -153,5 +154,3 @@ function fiveDay(fivedaylist) {
 	}
 }
 init();
-
-// http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={8e615c825fd43e5fdbc1ce461e5a0a9d}
