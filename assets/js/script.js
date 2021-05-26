@@ -3,7 +3,9 @@ const apiKey = "8e615c825fd43e5fdbc1ce461e5a0a9d";
 var testVar = "";
 var indexArray = [];
 var forecast;
+
 var now = moment();
+
 var date =
 	now._d.getFullYear() +
 	"-" +
@@ -50,9 +52,48 @@ function callApi(value) {
 			return res.json();
 		})
 		.then(function (cityForecast) {
+			var lat = cityForecast.coord.lat;
+
+			var lon = cityForecast.coord.lon;
+			var onecallUrl =
+				"https://api.openweathermap.org/data/2.5/onecall?lat=" +
+				lat +
+				"&lon=" +
+				lon +
+				"&appid=" +
+				apiKey;
+			fetch(onecallUrl)
+				.then(function (res) {
+					return res.json();
+				})
+				.then(function (data) {
+					var uviData = data.current.uvi;
+					weatherDisplay.children[4].innerText = "";
+					getUvi(uviData);
+					// console.log(uvi);
+				});
+
 			displayForecast(cityForecast);
 		});
-
+	function getUvi(uvi) {
+		var uvDisplay = weatherDisplay.children[4];
+		var makeButton = document.createElement("button");
+		uvDisplay.innerText = "UV Index: ";
+		makeButton.innerText = uvi;
+		uvDisplay.appendChild(makeButton);
+		for (var i = 0; i < forecastCards.children.length; i++) {}
+		switch (uvi > 7) {
+			case true:
+				makeButton.setAttribute("class", "border rounded bg-danger");
+				break;
+			case false:
+				if (uvi >= 5) {
+					makeButton.setAttribute("class", "border rounded bg-warning");
+				} else {
+					makeButton.setAttribute("class", "border rounded bg-success");
+				}
+		}
+	}
 	fetch(
 		"http://api.openweathermap.org/data/2.5/forecast?q=" +
 			value +
@@ -71,6 +112,7 @@ function callApi(value) {
 					indexArray.push(i);
 				}
 			}
+
 			fiveDay(fdforecast);
 		});
 }
@@ -80,7 +122,6 @@ function displayForecast(value) {
 	weatherDisplay.children[1].innerText = "Temp: " + value.main.temp + " F";
 	weatherDisplay.children[2].innerText = "Wind: " + value.wind.speed;
 	weatherDisplay.children[3].innerText = "Humidity: " + value.main.humidity;
-	weatherDisplay.children[4].innerText = "UV Index: " + value.main.humidity;
 }
 function fiveDay(fivedaylist) {
 	testVar = fivedaylist;
@@ -107,8 +148,6 @@ function fiveDay(fivedaylist) {
 			"Wind: " + fivedaylist.list[indexArray[i]].wind.speed;
 		forecastCards.children[i].children[0].children[4].innerText =
 			"Humidity: " + fivedaylist.list[indexArray[i]].main.humidity + "%";
-		forecastCards.children[i].children[0].children[5].innerText =
-			"UV Index: " + fivedaylist.list[indexArray[i]].main.humidity + "%";
 	}
 }
 init();
