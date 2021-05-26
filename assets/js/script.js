@@ -52,6 +52,7 @@ function callApi(value) {
 			return res.json();
 		})
 		.then(function (cityForecast) {
+			// Fetch runs lat and lon coordinates in order to run another fetch with the values to get UVI data.
 			var lat = cityForecast.coord.lat;
 
 			var lon = cityForecast.coord.lon;
@@ -104,6 +105,7 @@ function callApi(value) {
 			return res.json();
 		})
 		.then(function (fdforecast) {
+			// This algorithm takes the full length of the five day forecast, gathers each date in the full array then splits them and checks for each that matches the times for 12noon. IT then pushes those indexes to an array for accessing later.
 			for (var i = 0; i < fdforecast.list.length; i++) {
 				var listDates = fdforecast.list[i].dt_txt;
 				listDates = listDates.split(" ");
