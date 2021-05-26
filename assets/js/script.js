@@ -13,12 +13,18 @@ searchButton.addEventListener("click", function (e) {
 	e.preventDefault();
 	var searchTerm = searchField.value;
 	console.log("Search button connected term:", searchTerm);
+	for (var i = 0; i < forecastCards.children.length; i++) {
+		forecastCards.children[i].children[0].children[1].innerHTML = "";
+	}
 	callApi(searchTerm);
 });
 function init() {
 	for (var i = 0; i < citiesCol.children.length; i++) {
 		citiesCol.children[i].addEventListener("click", function (e) {
 			callApi(e.target.id);
+			for (var i = 0; i < forecastCards.children.length; i++) {
+				forecastCards.children[i].children[0].children[1].innerHTML = "";
+			}
 		});
 	}
 }
@@ -64,10 +70,25 @@ function fiveDay(fivedaylist) {
 		forecastCards.children[i].children[0].children[0].innerText = `${
 			now._d.getMonth() + 1
 		}/${now._d.getDate() + i}/${now._d.getFullYear()}`;
+		// get Icon code
+		var iconCode = fivedaylist.list[i].weather[0].icon;
+		console.log(iconCode);
+		var icon = document.createElement("img");
+		console.log(icon);
+		icon.setAttribute(
+			"src",
+			"http://openweathermap.org/img/wn/" + iconCode + "@2x.png"
+		);
+
+		forecastCards.children[i].children[0].children[1].appendChild(icon);
 		forecastCards.children[i].children[0].children[2].innerText =
 			"Temp: " + fivedaylist.list[i].main.temp + " F";
 		forecastCards.children[i].children[0].children[3].innerText =
 			"Wind: " + fivedaylist.list[i].wind.speed;
+		forecastCards.children[i].children[0].children[4].innerText =
+			"Humidity: " + fivedaylist.list[i].main.humidity + "%";
+		forecastCards.children[i].children[0].children[5].innerText =
+			"UV Index: " + fivedaylist.list[i].main.humidity + "%";
 	}
 }
 init();
