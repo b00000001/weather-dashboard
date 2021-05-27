@@ -143,12 +143,12 @@ function fiveDay(fivedaylist) {
 		var icon = document.createElement("img");
 		icon.setAttribute(
 			"src",
-			"http://openweathermap.org/img/w/" + iconCode + ".png"
+			"http://openweathermap.org/img/wn/" + iconCode + "@2x.png"
 		);
 		var formattedDate = fivedaylist.list[indexArray[i]].dt_txt;
 		formattedDate = formattedDate.split(" ");
 		var cardbg = document.querySelectorAll(".card");
-		cardbg[i].setAttribute("class", "card bg-dark text-white");
+		cardbg[i].setAttribute("class", "card bg-secondary text-white");
 		forecastCards.children[i].children[0].children[0].innerText =
 			formattedDate[0];
 		forecastCards.children[i].children[0].children[1].appendChild(icon);
