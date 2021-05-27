@@ -139,7 +139,7 @@ function displayForecast(value) {
 		"class",
 		"bg-dark text-white ps-3 p-3 border border-4 border-secondary rounded"
 	);
-	weatherDisplay.children[0].innerText = value.name + " " + formattedDate;
+	weatherDisplay.children[0].innerText = value.name + " " + date;
 	weatherDisplay.children[1].innerText = "Temp: " + value.main.temp + " F";
 	weatherDisplay.children[2].innerText = "Wind: " + value.wind.speed;
 	weatherDisplay.children[3].innerText = "Humidity: " + value.main.humidity;
