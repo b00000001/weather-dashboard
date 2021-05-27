@@ -124,7 +124,7 @@ function displayForecast(value) {
 	var weatherDisplay = document.getElementById("weather__display");
 	weatherDisplay.setAttribute(
 		"class",
-		"bg-dark text-white ps-3 p-3 border-white rounded"
+		"bg-dark text-white ps-3 p-3 border border-4 border-secondary rounded"
 	);
 	weatherDisplay.children[0].innerText = value.name;
 	weatherDisplay.children[1].innerText = "Temp: " + value.main.temp + " F";
@@ -148,7 +148,10 @@ function fiveDay(fivedaylist) {
 		var formattedDate = fivedaylist.list[indexArray[i]].dt_txt;
 		formattedDate = formattedDate.split(" ");
 		var cardbg = document.querySelectorAll(".card");
-		cardbg[i].setAttribute("class", "card bg-secondary text-white");
+		cardbg[i].setAttribute(
+			"class",
+			"card  border border-dark border-4 bg-secondary text-white"
+		);
 		forecastCards.children[i].children[0].children[0].innerText =
 			formattedDate[0];
 		forecastCards.children[i].children[0].children[1].appendChild(icon);
