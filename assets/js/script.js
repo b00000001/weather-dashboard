@@ -121,6 +121,8 @@ function callApi(value) {
 }
 function displayForecast(value) {
 	// console.log("Call API for: ", value.name); // Will say what API search term is being sent
+	var weatherDisplay = document.getElementById('weather__display');
+	weatherDisplay.setAttribute('class', 'bg-dark text-white border-white rounded');
 	weatherDisplay.children[0].innerText = value.name;
 	weatherDisplay.children[1].innerText = "Temp: " + value.main.temp + " F";
 	weatherDisplay.children[2].innerText = "Wind: " + value.wind.speed;
@@ -142,6 +144,9 @@ function fiveDay(fivedaylist) {
 		);
 		var formattedDate = fivedaylist.list[indexArray[i]].dt_txt;
 		formattedDate = formattedDate.split(" ");
+		var cardbg = document.querySelectorAll('.card');
+		console.log(cardbg);
+		cardbg[i].setAttribute('class', 'card bg-dark text-white')
 		forecastCards.children[i].children[0].children[0].innerText =
 			formattedDate[0];
 		forecastCards.children[i].children[0].children[1].appendChild(icon);
