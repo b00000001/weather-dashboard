@@ -2,6 +2,7 @@ var citiesCol = document.getElementById("city__col");
 const apiKey = "8e615c825fd43e5fdbc1ce461e5a0a9d";
 var testVar = "";
 var indexArray = [];
+var searchDefault;
 var forecast;
 
 var now = moment();
@@ -11,7 +12,13 @@ var date =
 	"-" +
 	`${now._d.getMonth() + 1}` +
 	"-" +
-	now._d.getDay();
+	now._d.getDate();
+var formattedDate =
+	`${now._d.getMonth() + 1}` +
+	"-" +
+	now._d.getDate() +
+	"-" +
+	now._d.getFullYear();
 var weatherDisplay = document.getElementById("weather__display");
 var forecastCards = document.getElementById("forecast__cards");
 searchButton = document.getElementById("search__btn");
@@ -23,6 +30,7 @@ searchButton.addEventListener("click", function (e) {
 	e.preventDefault();
 	indexArray = [];
 	var searchTerm = searchField.value;
+	localStorage.setItem("searchHistory", searchTerm);
 	// console.log("Search button connected term:", searchTerm); // Will spit out what term was put into search for debugging.
 	for (var i = 0; i < forecastCards.children.length; i++) {
 		forecastCards.children[i].children[0].children[1].innerHTML = "";
@@ -31,6 +39,11 @@ searchButton.addEventListener("click", function (e) {
 });
 
 function init() {
+	if (window.localStorage.searchHistory) {
+		searchDefault = window.localStorage.searchHistory;
+		searchField.value = searchDefault;
+	}
+
 	for (var i = 0; i < citiesCol.children.length; i++) {
 		citiesCol.children[i].addEventListener("click", function (e) {
 			callApi(e.target.id);
@@ -126,7 +139,7 @@ function displayForecast(value) {
 		"class",
 		"bg-dark text-white ps-3 p-3 border border-4 border-secondary rounded"
 	);
-	weatherDisplay.children[0].innerText = value.name;
+	weatherDisplay.children[0].innerText = value.name + " " + formattedDate;
 	weatherDisplay.children[1].innerText = "Temp: " + value.main.temp + " F";
 	weatherDisplay.children[2].innerText = "Wind: " + value.wind.speed;
 	weatherDisplay.children[3].innerText = "Humidity: " + value.main.humidity;
