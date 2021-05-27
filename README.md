@@ -8,7 +8,7 @@
 - The current conditions will show in the main 'Jumbotron' like section on the page
 - The five day forecast will show under this section in 5 card sections on the page.
 
-![Here is a demo of the app running](./assets/images/pagedemo.png)
+![Here is a demo of the app running](./assets/images/pagedemo.PNG)
 
 - The 5 day forecast UV index is color coded in 3 ways.
 - If the index is above 7, the color will be red.
