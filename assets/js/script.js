@@ -43,7 +43,7 @@ function init() {
 }
 function callApi(value) {
 	fetch(
-		"http://api.openweathermap.org/data/2.5/weather?q=" +
+		"https://api.openweathermap.org/data/2.5/weather?q=" +
 			value +
 			"&units=imperial&appid=" +
 			apiKey
