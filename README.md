@@ -1,5 +1,7 @@
 <h1 align='center'>Weather Dashboard</h1>
 
+# [Link to App](b00000001.github.io/weather-dashboard/)
+
 # Description
 
 A daily weather dashboard that leverages API data to display your local weather in a 5 day format. The weather has icons to display the current or future conditions and also has a color coded UV index.
