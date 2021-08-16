@@ -1,6 +1,6 @@
 <h1 align='center'>Weather Dashboard</h1>
 
-# [Link to App](b00000001.github.io/weather-dashboard/)
+# [Link to App](https://b00000001.github.io/weather-dashboard/)
 
 # Description
 
